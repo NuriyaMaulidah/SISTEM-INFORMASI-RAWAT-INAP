@@ -1,31 +1,35 @@
 <?php
-error_reporting(0);
-require 'koneksi.php';
+  error_reporting(0);
+require '../../koneksi.php';
   session_start();
   if($_SESSION['login'] != true){
-    header('location: index.php');
+    header('location:../../index.php');
   }
 
 ?>
 <html>
 <head>
-  <title>RS Mario Bros</title>
+  <title>RS HARAPAN BUNDA</title> <link rel="icon" href="../../aa.png">
   <link rel="stylesheet" href="tampil.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
 </head>
 <body>
 
   <div class="wrap">
     <div class="header">
-      <h1>RS MARIO BROS</h1>
+      <h1>RS HARAPAN BUNDA</h1>
       <p>Admin <?php echo $_COOKIE['ambil'];?></p>
       <a onclick="logout()">Logout</a>
   </div>
   <div class="headerkecil">
     <span class="menubawah">
-        <a class="aa" href="../rawat/tampil.php">Laporan Rawat</a>
-        <a class="bb" href="../ruangan/tampil.php">Data Ruangan</a>
-        <a class="cc" href="../dokter/tampil.php">Data Dokter</a>
-        <a class="dd" href="../pasien/tampilpasien.php">Data Pasien</a>
+      <a href="../../admin.php" class="aa">Profil Rumah Sakit</a>
+      <a href="../rawat/laporan.php" class="bb">Laporan Rawat</a>
+      <a href="../ruangan/tampil.php" class="cc">Data Ruangan</a>
+      <a href="tampil.php" class="dd">Data Dokter</a>
+      <a href="../pasien/tampilpasien.php" class="ee">Data Pasien</a>
     </span>
   </div><br>
   <script type="text/javascript">
@@ -39,7 +43,7 @@ require 'koneksi.php';
     }
   </script>
   <div class="link">
-    <a href="rawat.php">tambah data</a>
+    <a href="input_dokter.php">tambah data</a>
       <form method="POST" action="" class="cari">
         <input type="text" name="search" class="aaa" placeholder="cari data"/>
         <input type="submit"  name="cari" value="cari" class="bbb"/>
@@ -49,49 +53,59 @@ require 'koneksi.php';
       </form>
   </div>
   <div class="content">
-    <h2>Laporan Rawat</h2><br>
+    <h2>Data Dokter</h2><br>
     <span class="contentkecil">
       <br><br><br>
-  <table cellspacing='0'>
+  <table class="table table-bordered table-striped table-hover" cellspacing='0'>
       <thead>
         <tr>
-          <th>No RM</th>
-          <th>Nama Pasien</th>
-          <th>No Reg Pasien</th>
+          <th>Kode Dokter</th>
           <th>Nama Dokter</th>
-          <th>Kode ruangan</th>
-          <th>Penyakit</th>
-          <th>Tgl Rawat</th>
-          <th>Tgl Keluar</th>
+          <th>Spesialis</th>
+          <th>Alamat</th>
+          <th>No Hp</th>
+          <th>Umur</th>
+          <th>Alumni</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php
+        $batas = 8;
+        $queryjum = mysqli_query($link, "SELECT *from data_dokter where kode_dokter");
+        $jum = mysqli_num_rows($queryjum);
+        $halaman = ceil($jum/$batas);
+        $page = (isset($_GET['page'])) ? $_GET['page']:1;
+        $posisi = ($page - 1) * $batas;
         if ($query != ''){
-          //$sah = mysqli_query($link, "SELECT *FROM rawat where no_reg like '%".$query."%' or nama like '%".$query."%' or No_RM like '%".$query."%' ");
-          $sah = mysqli_query($link, "SELECT data_pasien.No_RM, data_pasien.nama, rawat.no_reg, rawat.no_rm, data_dokter.nama_dokter, rawat.kode_ruangan, rawat.penyakit, rawat.tgl_rawat, rawat.tgl_keluar from data_pasien inner join rawat on data_pasien.No_RM = rawat.no_rm inner join data_dokter on rawat.kode_dokter = data_dokter.kode_dokter WHERE data_pasien.No_RM LIKE '%$query%' or data_pasien.nama LIKE '%$query%' ");
+          $sah = mysqli_query($link, "SELECT *FROM data_dokter where kode_dokter like '%".$query."%' or nama_dokter like '%".$query."%' or spesialis like '%".$query."%' ");
         }else{
-            $sah = mysqli_query($link, 'SELECT data_pasien.No_RM, data_pasien.nama, rawat.no_reg, rawat.no_rm, data_dokter.nama_dokter, rawat.kode_ruangan, rawat.penyakit, rawat.tgl_rawat, rawat.tgl_keluar from data_pasien inner join rawat on data_pasien.No_RM = rawat.no_rm inner join data_dokter on rawat.kode_dokter = data_dokter.kode_dokter;');
+            $sah = mysqli_query($link, 'SELECT *from data_dokter where kode_dokter');
           }
           while ($row = mysqli_fetch_array($sah)) {
           ?>
               <tr>
-                <td><?php echo $row['No_RM'] ?></td>
-                <td><?php echo $row['nama'] ?></td>
-                <td><?php echo $row['no_reg'] ?></td>
+                <td><?php echo $row['kode_dokter'] ?></td>
                 <td><?php echo $row['nama_dokter'] ?></td>
-                <td><?php echo $row['kode_ruangan'] ?></td>
-                <td><?php echo $row['penyakit'] ?></td>
-                <td><?php echo $row['tgl_rawat'] ?></td>
-                <td><?php echo $row['tgl_keluar'] ?></td>
-                <td><a href="edit.php?no_reg=<?php echo $row['no_reg'] ?>" onclick="return confirm('Yakin?');"  class="action">edit</a><br>
-                <a href="delete.php?no_reg=<?php echo $row['no_reg'] ?>" onclick="return confirm('Yakin?');" class="action">delete</a></td>
+                <td><?php echo $row['spesialis'] ?></td>
+                <td><?php echo $row['alamat'] ?></td>
+                <td><?php echo $row['no_hp'] ?></td>
+                <td><?php echo $row['umur'] ?></td>
+                <td><?php echo $row['alumni'] ?></td>
+                <td><a href="edit.php?kode_dokter=<?php echo $row['kode_dokter'] ?>" onclick="return confirm('Yakin?');"  class="action">edit</a><br>
+                <a href="delete.php?kode_dokter=<?php echo $row['kode_dokter'] ?>" onclick="return confirm('Yakin?');" class="action">delete</a></td>
               </tr>
         <?php } ?>
       </tbody>
     </div>
   </table>
+  <?php
+       for($x=1; $x<=$halaman; $x++){
+        ?>
+        <a href="?page=<?php echo $x;?>" class="page">
+          <?php echo $x;?>
+        </a>
+       <?php } ?>
 </div>
 <div class="clear"></div><br>
 <div class="titik" style="border-bottom: 1px dashed #262626"></div>
