@@ -1,13 +1,13 @@
 <?php
 require '../../koneksi.php';
 
-  $id = $_GET["No_RM"];
+  $id = $_GET["no_reg"];
 
-  $hapus = mysqli_query($link, "DELETE FROM data_pasien WHERE No_RM='".$id."'");
+  $hapus = mysqli_query($link, "DELETE FROM rawat WHERE no_reg=$id");
 
   if($hapus){
-    echo "<script> alert('Berhasil menghapus data !'); document.location.href='tampilpasien.php'; </script>";
-  } else{
-    echo "<script> alert('Gagal menghapus data !'); document.location.href='tampilpasien.php'; </script>";
+    echo "<script> alert('Berhasil menghapus data !'); document.location.href='tampil.php'; </script>";
+  }else{
+    "<script> alert('Gagal nebghapus data !'); document.location.href='tampil.php'; </script>";
   }
 ?>

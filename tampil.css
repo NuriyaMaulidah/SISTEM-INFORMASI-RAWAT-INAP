@@ -143,6 +143,7 @@ a{
   border-radius:130px;
 }
 
+
 .clear {clear:both}
 
 .footer {
@@ -176,11 +177,71 @@ a{
   top: 0px;
 }
 
-table{
-  position: relative;
-  left: -65px;
-  top: 10px;
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+  text-shadow: 1px 1px 0px #fff;
+  background: #eaebec;
+  border: #e7e6e6 1px solid;
   font-size: 13px;
+  position: relative;
+  right: 48px;
+  bottom: 40px;
+}
+
+table th {
+  padding: 5px 5px;
+  padding-right: 27px;
+  border-left:1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ededed;
+}
+
+table th:first-child{
+  border-left:none;
+}
+
+table tr {
+  text-align: left;
+  padding-left: 20px;
+}
+
+table td:first-child {
+  text-align: left;
+  padding-left: 20px;
+  border-left: 0;
+}
+
+table td {
+  padding: 15px 10px;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #f7f5f5;
+  border-left: 1px solid #f7f5f5;
+  background: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+  background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+
+table tr:last-child td {
+  border-bottom: 0;
+}
+
+table tr:last-child td:first-child {
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+table tr:last-child td:last-child {
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+table tr:hover td {
+  background: #f2f2f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+  background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
 }
 
 .cari{
@@ -217,20 +278,4 @@ table{
 
 .bbb:hover{
   background: rgb(46, 81, 129);
-}
-
-.page{
-  float: left;
-  color: #4A9EFB;
-  position: relative;
-  left: 390px;
-  top: 30px;
-  width: 30px;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.page:hover{
-  background: #6B6A6A;
 }
