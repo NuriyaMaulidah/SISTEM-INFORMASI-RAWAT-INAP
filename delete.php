@@ -1,9 +1,9 @@
 <?php
 require '../../koneksi.php';
 
-  $id = $_GET["no_reg"];
+  $id = $_GET["kode_ruangan"];
 
-  $hapus = mysqli_query($link, "DELETE FROM rawat WHERE no_reg=$id");
+  $hapus = mysqli_query($link, "DELETE FROM ruangan WHERE kode_ruangan='".$id."'");
 
   if($hapus){
     echo "<script> alert('Berhasil menghapus data !'); document.location.href='tampil.php'; </script>";

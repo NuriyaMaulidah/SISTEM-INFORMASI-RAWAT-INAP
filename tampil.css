@@ -65,7 +65,7 @@ a{
 .content {
   float:right;
   width:96%;
-  height: 100%;
+  height: 120%;
   background:rgba(255, 251, 254, 0.85);
   padding:2%;
   min-height:400px;
@@ -191,7 +191,7 @@ table {
 
 table th {
   padding: 5px 5px;
-  padding-right: 27px;
+  padding-right: 156px;
   border-left:1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
   background: #ededed;
@@ -278,4 +278,50 @@ table tr:hover td {
 
 .bbb:hover{
   background: rgb(46, 81, 129);
+}
+
+.page{
+  float: left;
+  color: #4A9EFB;
+  position: relative;
+  left: 390px;
+  top: 30px;
+  width: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pages {
+  float: left;
+  background-color: transparent;
+  color: #4A9EFB;
+  position: relative;
+  left: 390px;
+  top: 30px;
+  width: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.page:hover{
+  background: #6B6A6A;
+}
+
+.page1 {
+  float: left;
+  background-color: transparent;
+  color: #4A9EFB;
+  position: relative;
+  left: 100px;
+  top: 30px;
+  width: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.page:hover{
+  background: #6B6A6A;
 }

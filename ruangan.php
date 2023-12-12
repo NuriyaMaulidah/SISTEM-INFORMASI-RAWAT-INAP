@@ -1,24 +1,9 @@
 <?php
-require '../../koneksi.php';
+  require '../../koneksi.php';
   session_start();
   if($_SESSION['login'] != true){
     header('location:../../index.php');
   }
-
-  $id = $_GET["kode_ruangan"];
-
-  $tampil = mysqli_query($link, "SELECT *from ruangan where kode_ruangan ='".$id."'");
-
-  $result = mysqli_fetch_assoc($tampil);
-    if (isset($_POST['kirim'])) {
-      $kode_ruangan  = $_POST['kode_ruangan'];
-      $nama_ruangan  = $_POST['nama_ruangan'];
-      $status        = $_POST['status'];
-      $query = "UPDATE ruangan SET nama_ruangan='$nama_ruangan', status='$status' WHERE kode_ruangan = '".$id."'";
-
-    if(mysqli_query($link,$query)){
-      echo "<script> alert('Data berhasil di ubah !!'); document.location.href='tampil.php'; </script>";
-    }  }
 ?>
 
 <html>
@@ -58,21 +43,13 @@ require '../../koneksi.php';
       <div class="content">
         <h2>Input Data Ruangan</h2><br>
         <span class="contentkecil">
-          <form method="POST" action="">
+          <form method="POST" action="simpan.php">
             <p>
-              Masukkan kode ruangan<input type="text" name="kode_ruangan" class="inputan1" value="<?php echo $result["kode_ruangan"]; ?>" required readonly>
+              Masukkan kode ruangan<input type="text" name="kode_ruangan" class="inputan1" required>
             </p><br>
             <p>
-              Masukkan nama ruangan<input type="text" name="nama_ruangan" class="inputan2" value="<?php echo $result["nama_ruangan"]; ?>" required>
+              Masukkan nama ruangan<input type="text" name="nama_ruangan" class="inputan2" required>
             </p><br>
-            <p>
-              Status
-              <select name="status" class="inputan3" value="<?php echo $result["status"]; ?>" readonly>
-                  <option value="terisi" readonly>Terisi</option>
-                  <option value="kosong" readonly>Kosong</option>
-              </select>
-            </p><br>
-
             <div id="tombol">
               <input type="submit" name="kirim" value="Simpan" class="tombol">
             </div>
