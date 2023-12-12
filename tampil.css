@@ -143,7 +143,6 @@ a{
   border-radius:130px;
 }
 
-
 .clear {clear:both}
 
 .footer {
@@ -179,8 +178,8 @@ a{
 
 table{
   position: relative;
-  left: -47px;
-  top: -47px;
+  left: -65px;
+  top: 10px;
   font-size: 13px;
 }
 
